@@ -6,16 +6,26 @@ $(document).ready(function () {
 
 function hello() {
     console.log("RAN");
-    var tagString = $("#tagName").val();
-    var tagNameString = "";
-    for (var i = 0; i < tagString.size(); i++) {
-        var curChar = tagString[i];
-        tagNameString = "";
 
-        if ((curChar > 'a' && curChar < 'z') && (curChar > 'A' && curChar < 'Z')) {
+    var tagString = $("#tagName:text").val();
+    console.log($.type(tagString));
+    var tagNameString = "";
+    for (var i = 0; i < tagString.length; i++) {
+        var curChar = tagString[i];
+
+        if ((curChar >= 'a' && curChar <= 'z') || (curChar >= 'A' && curChar <= 'Z') || (curChar > '0' && curChar <= '9')) {
             tagNameString += curChar;
+        } else if (tagNameString.length > 0) {
+            tagList.push(tagNameString);
+            tagNameString = "";
+        } else {
+            tagNameString = "";
         }
     }
+
+    tagList.push(tagNameString);
+    console.log(testArr);
+
 
     if (!changed) {
         chrome.tabs.executeScript({
