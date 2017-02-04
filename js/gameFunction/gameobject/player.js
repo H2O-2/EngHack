@@ -3,6 +3,7 @@ Player = function() {
     this.createBullet = 0;
     this.face = 2;
     this.team = TEAM.ONE;
+    this.shootingAlarm = new Alarm();
 
     this._tick = function() {
         this.hspeed = this.handler._getKeyManager().rightKey - this.handler._getKeyManager().leftKey;
@@ -23,11 +24,13 @@ Player = function() {
         }
 
         this.createBullet = this.handler._getKeyManager().spaceKey;
-        if (this.createBullet === 1) {
-            var BULLET = new gameObject(this.x, this.y, null, 20, this.handler);
+        var shootingAlarmResult = this.shootingAlarm._tick();
+        if ((shootingAlarmResult === true || shootingAlarmResult === null ) && this.createBullet === 1) {
+            var BULLET = new gameObject(this.x, this.y, null, 8, this.handler);
             Bullet.prototype = BULLET;
             var bullet = new Bullet(this.face, TEAM.ONE);
             this.handler._getBullets().push(bullet);
+            this.shootingAlarm._init(10);
         }
 
     };
