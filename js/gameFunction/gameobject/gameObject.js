@@ -1,12 +1,15 @@
-function gameObject(x, y) {
-    this._x = x;
-    this._y = y;
+var gameObject = function (x, y, width, height, speed, handler) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
 
-    this._tick = function() {
+    this.handler = handler;
+    this.vspeed = 0;
+    this.hspeed = 0;
+    this.speed = speed;
 
-    }
-
-    this._render = function(ctx) {
-
+    this.collide = function (other) {
+        // ...
     }
 }

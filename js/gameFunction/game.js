@@ -9,7 +9,9 @@ function Game() {
 
     this._init = function () {
         this.handler = new Handler(this);
-        this.player = new Player(0, 0, this.handler);
+        var PLAYER = new gameObject(0, 0, 100, 100, 5, this.handler);
+        Player.prototype = PLAYER;
+        this.player = new Player();
         this.states[GAMESTATES.RUNNING] = new RunningState(this.handler);
         this.states[GAMESTATES.END] = null;
         this.currentState = GAMESTATES.RUNNING;
