@@ -11,8 +11,9 @@ var GAMESTATES = {RUNNING: 1, END: 2};
 
 var DIRECTION = {LEFT: 0, RIGHT: 1, UP: 2, DOWN: 3};
 
-var ENTITY_STATES = {IDLING: 0, MOVING: 1, JUMPING: 2, CHASING: 3};
+var ENTITY_STATES = {IDLING: 0, MOVING: 1, CHASING: 3};
 
+var TEAM = {ONE:1, TWO:2};
 
 
 function main() {

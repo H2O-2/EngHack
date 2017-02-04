@@ -9,5 +9,8 @@ function Handler(game) {
         return this.game.player;
     }
 
+    this._getBullets = function () {
+        return this.game.bullets;
+    }
     // asset
 }
