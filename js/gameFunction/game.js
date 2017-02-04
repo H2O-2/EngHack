@@ -6,10 +6,11 @@ function Game() {
 
     this.keyManager = keyManager;
 
+    this.bullets = [];
 
     this._init = function () {
         this.handler = new Handler(this);
-        var PLAYER = new gameObject(0, 0, 100, 100, 5, this.handler);
+        var PLAYER = new gameObject(0, 0, null, 5, this.handler);
         Player.prototype = PLAYER;
         this.player = new Player();
         this.states[GAMESTATES.RUNNING] = new RunningState(this.handler);
