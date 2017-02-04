@@ -30,7 +30,6 @@ function changeColor() {
     //oriColor = elementList[0].style.background;
     //elementList[0].style.background = "red";
 }
-
 console.log("red");
 
 changeColor();
