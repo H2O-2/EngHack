@@ -29,6 +29,7 @@ Player = function() {
             var BULLET = new gameObject(this.x, this.y, null, 8, this.handler);
             Bullet.prototype = BULLET;
             var bullet = new Bullet(this.face, TEAM.ONE);
+            bullet._init();
             this.handler._getBullets().push(bullet);
             this.shootingAlarm._init(10);
         }
