@@ -3,7 +3,7 @@ var Rectangle = function (x, y, width, height) {
     this.recY = y;
     this.width = width;
     this.height = height;
-}
+};
 
 
 var gameObject = function (x, y, rectangle, speed, handler) {
@@ -22,4 +22,4 @@ var gameObject = function (x, y, rectangle, speed, handler) {
     this.collide = function (other) {
         // ...
     }
-}
+};
