@@ -20,4 +20,8 @@ function Handler(game) {
     this._getEnemies = function () {
         return this.game.enemies;
     };
+
+    this._getObstacles = function () {
+        return this.game.obstacles;
+    }
 }

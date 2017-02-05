@@ -7,7 +7,7 @@ window.addEventListener( "mousemove", function(e) {
     keyManager.mouseY = e.clientY;
 });
 
-var KEYEVENT = {SPACE: 32, VK_LEFT: 65, VK_UP: 87, VK_RIGHT: 68, VK_DOWN: 83, SHOOT: 69};
+var KEYEVENT = {SHIFT: 16, SPACE: 32, VK_LEFT: 65, VK_UP: 87, VK_RIGHT: 68, VK_DOWN: 83, SHOOT: 69};
 
 function KeyManager() {
     // fields
@@ -20,11 +20,9 @@ function KeyManager() {
     this.downKey = 0;
     this.leftKey = 0;
     this.rightKey = 0;
-    this.spaceKey = 0;
+    this.shitfKey = 0;
     this.shootKey = 0;
 
-    this.pressed = false;
-    this.takeInput = false;
 
     this._init = function () {
         for (var i = 0; i < 256; ++i) {
@@ -37,7 +35,7 @@ function KeyManager() {
         this.downKey = this.keys[KEYEVENT.VK_DOWN];
         this.leftKey = this.keys[KEYEVENT.VK_LEFT];
         this.rightKey = this.keys[KEYEVENT.VK_RIGHT];
-        this.spaceKey = this.keys[KEYEVENT.SPACE];
+        this.shitfKey = this.keys[KEYEVENT.SHIFT];
         this.shootKey = this.keys[KEYEVENT.SHOOT];
     };
 
