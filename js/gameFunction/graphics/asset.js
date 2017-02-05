@@ -11,14 +11,14 @@ var Asset = function() {
         // player idle
         // player walk
         this.spr_player = new Sprite(img, 0, 0, 28, 56);
-        this.spr_player_walk[0] = new Array(8);
-        this.spr_player_walk[1] = new Array(8);
-        this.spr_player_walk[2] = new Array(8);
-        this.spr_player_walk[3] = new Array(8);
-        this.spr_player_sprint[0] = new Array(6);
-        this.spr_player_sprint[1] = new Array(6);
-        this.spr_player_sprint[2] = new Array(6);
-        this.spr_player_sprint[3] = new Array(6);
+        this.spr_player_walk[0] = new Array(6);
+        this.spr_player_walk[1] = new Array(6);
+        this.spr_player_walk[2] = new Array(6);
+        this.spr_player_walk[3] = new Array(6);
+        this.spr_player_sprint[0] = new Array(8);
+        this.spr_player_sprint[1] = new Array(8);
+        this.spr_player_sprint[2] = new Array(8);
+        this.spr_player_sprint[3] = new Array(8);
         this.spr_player_walk[0][0] = new Sprite(img, 28 * 9 + 24, 56 * 3, 26, 56);
         this.spr_player_walk[0][2] = new Sprite(img, 28 * 9 + 50, 56 * 3, 28, 56);
         this.spr_player_walk[0][1] = new Sprite(img, 28 * 9 + 78, 56 * 3, 28, 56);
