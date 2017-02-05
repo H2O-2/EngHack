@@ -15,13 +15,17 @@ var Animation = function(tenf, sprite) {
                 this.index = 0;
             }
         }
-    }
+    };
 
     this._getFrame = function() {
         return this.sprite[this.index];
-    }
+    };
+
+    this._getFrameAt = function(pointer) {
+        return this.sprite[pointer];
+    };
 
     this._reset = function() {
         this.index = 0;
-    }
+    };
 };

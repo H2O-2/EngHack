@@ -1,3 +1,5 @@
+var PLAYERSTATE = {IDLING: 0, MOVING: 1, ATTACKING: 2};
+
 var Player = function() {
 
     this.createBullet = 0;
@@ -5,7 +7,14 @@ var Player = function() {
     this.team = TEAM.ONE;
     this.shootingAlarm = new Alarm();
 
-    //this.walk_animation = new Animation(10, this.handler._getAsset().spr_player);
+    this.state = PLAYERSTATE.IDLING;
+
+    this.walk_animation = [
+        new Animation(7, this.handler._getAsset().spr_player_walk[0]),
+        new Animation(7, this.handler._getAsset().spr_player_walk[1]),
+        new Animation(7, this.handler._getAsset().spr_player_walk[2]),
+        new Animation(7, this.handler._getAsset().spr_player_walk[3]),
+    ];
 
     this._tick = function() {
         this.hspeed = this.handler._getKeyManager().rightKey - this.handler._getKeyManager().leftKey;
@@ -13,8 +22,12 @@ var Player = function() {
 
         if (this.hspeed !== 0) {
             this.face = this.hspeed / 2 + 0.5;
-        } else if (this.vspeed) {
+            this.state = PLAYERSTATE.MOVING;
+        } else if (this.vspeed !== 0) {
             this.face = this.vspeed / 2 + 2.5;
+            this.state = PLAYERSTATE.MOVING;
+        } else {
+            this.state = PLAYERSTATE.IDLING;
         }
 
         if (this.hspeed !== 0 && this.vspeed !== 0) {
@@ -36,12 +49,14 @@ var Player = function() {
             this.shootingAlarm._init(10);
         }
 
-        //this.walk_animation._tick();
+        this.walk_animation[this.face]._tick();
     };
 
     this._render = function(ctx) {
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(this.x, this.y, 50, 50);
-        //this.walk_animation._getFrame().draw(ctx, this.x, this.y);
+        if (this.state === PLAYERSTATE.IDLING) {
+            this.walk_animation[this.face]._getFrameAt(0).draw(ctx, this.x, this.y);
+        } else if (this.state === PLAYERSTATE.MOVING) {
+            this.walk_animation[this.face]._getFrame().draw(ctx, this.x, this.y);
+        }
     };
 };
