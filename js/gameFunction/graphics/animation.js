@@ -25,7 +25,4 @@ var Animation = function(tenf, sprite) {
         return this.sprite[pointer];
     };
 
-    this._reset = function() {
-        this.index = 0;
-    };
 };
