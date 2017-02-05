@@ -19,6 +19,7 @@ var TEAM = {ONE:1, TWO:2};
 function main() {
     var game = new Game();
     game._init();
+    game._generateEnemy();
 
     var ticks = 0, past = Date.now(), current;
 
