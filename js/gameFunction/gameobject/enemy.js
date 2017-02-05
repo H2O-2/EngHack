@@ -3,6 +3,8 @@ var Enemy = function () {
     this.face = 2;
     this.team = TEAM.TWO;
 
+    this.isSolid = false;
+
     this._tick = function() {
         var playerX = this.handler._getPlayer().x,
             playerY = this.handler._getPlayer().y;

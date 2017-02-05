@@ -1,4 +1,4 @@
-function RunningState(handler) {
+var RunningState = function (handler) {
 
     this.handler = handler;
 
@@ -24,9 +24,11 @@ function RunningState(handler) {
         }
         for (var i = 0; i < enemies.length; ++i) {
             enemies[i]._render(ctx);
+            if (enemies[i].destroyed) enemies.splice(i,1);
         }
         for (var i = 0; i < bullets.length; ++i) {
             bullets[i]._render(ctx);
+            if (bullets[i].destroyed) bullets.splice(i,1);
         }
         this.handler._getPlayer()._render(ctx);
 

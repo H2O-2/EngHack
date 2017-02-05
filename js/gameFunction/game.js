@@ -1,4 +1,4 @@
-function Game() {
+var Game = function() {
 
 
     this.currentState;
@@ -44,7 +44,6 @@ function Game() {
     };
 
     this._render = function (ctx) {
-        //ctx.clearRect(0 ,0 WIDTH, HEIGHT);
         ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
         this.states[this.currentState]._render(ctx);

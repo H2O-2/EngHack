@@ -10,6 +10,8 @@ var gameObject = function (x, y, rectangle, speed, handler) {
     this.x = x;
     this.y = y;
 
+    this.destroyed = false;
+
     this.bound = rectangle;
 
     this.handler = handler;
@@ -62,6 +64,7 @@ var gameObject = function (x, y, rectangle, speed, handler) {
 
     this.collideArray = function(arr) {
         for (var i = 0; i < arr.length; ++i) {
+            if (arr[i] === this) continue;
             if (this.collide(arr[i])) return true;
         }
         return false;
