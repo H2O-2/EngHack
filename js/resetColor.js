@@ -1,5 +1,6 @@
 function resetColor() {
-    console.log("red");
+    console.log("reset");
+    /*
     var list = document.getElementsByTagName("table");
 
     if(list === null) {
@@ -8,6 +9,9 @@ function resetColor() {
     }
 
     list[0].style.background = oriColor;
+    */
+
+    //console.log(tagList);
 }
 
 resetColor();
