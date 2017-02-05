@@ -1,9 +1,11 @@
-Player = function() {
+var Player = function() {
 
     this.createBullet = 0;
     this.face = 2;
     this.team = TEAM.ONE;
     this.shootingAlarm = new Alarm();
+
+    this.walk_animation = new Animation(10, this.handler._getAsset().spr_player);
 
     this._tick = function() {
         this.hspeed = this.handler._getKeyManager().rightKey - this.handler._getKeyManager().leftKey;
@@ -34,11 +36,12 @@ Player = function() {
             this.shootingAlarm._init(10);
         }
 
+        this.walk_animation._tick();
     };
 
     this._render = function(ctx) {
         //ctx.fillStyle = '#ffffff';
         //ctx.fillRect(this.x, this.y, 50, 50);
-        this.handler._getAsset().spr_player.draw(ctx, this.x, this.y);
+        this.walk_animation._getFrame().draw(ctx, this.x, this.y);
     };
 };
