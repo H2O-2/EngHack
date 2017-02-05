@@ -1,4 +1,4 @@
-var PLAYERSTATE = {IDLING: 0, MOVING: 1, ATTACKING: 2};
+var PLAYERSTATE = {IDLING: 0, MOVING: 1, SPRINTING : 2, ATTACKING: 3};
 
 var Player = function() {
 
@@ -30,12 +30,22 @@ var Player = function() {
             this.state = PLAYERSTATE.IDLING;
         }
 
+        var scale = 1;
+        if (this.handler._getKeyManager().shitfKey === 1) {
+            scale = 1.6;
+            this.state = PLAYERSTATE.SPRINTING;
+        }
+
         if (this.hspeed !== 0 && this.vspeed !== 0) {
-            this.x += this.hspeed * this.speed / 1.414;
-            this.y += this.vspeed * this.speed / 1.414;
-        } else {
-            this.x += this.hspeed * this.speed;
-            this.y += this.vspeed * this.speed;
+            this.hspeed /= 1.414;
+            this.vspeed /= 1.414;
+        }
+
+        var obstacles = this.handler._getObstacles();
+
+        if (!this.collideArray(obstacles)) {
+            this.x += scale * this.hspeed * this.speed;
+            this.y += scale * this.vspeed * this.speed;
         }
 
         this.createBullet = this.handler._getKeyManager().shootKey;
@@ -53,9 +63,12 @@ var Player = function() {
     };
 
     this._render = function(ctx) {
-        if (this.state === PLAYERSTATE.IDLING) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(this.x+this.bound.x, this.y+this.bound.y, this.bound.width, this.bound.height);
+
+        if (this.vspeed === 0 && this.hspeed === 0) {
             this.walk_animation[this.face]._getFrameAt(0).draw(ctx, this.x, this.y);
-        } else if (this.state === PLAYERSTATE.MOVING) {
+        } else {
             this.walk_animation[this.face]._getFrame().draw(ctx, this.x, this.y);
         }
     };

@@ -9,17 +9,18 @@ var Enemy = function () {
         this.hspeed = this.x - playerX >= 5?-1:(this.x - playerX <= -5?1:0);
         this.vspeed = this.y - playerY >= 5?-1:(this.y - playerY <= -5?1:0);
 
-        if (this.hspeed !== 0) {
-
+        if (this.hspeed !== 0 && this.vspeed !== 0) {
+            this.hspeed /= 1.414;
+            this.vspeed /= 1.414;
         }
 
-        if (this.hspeed !== 0 && this.vspeed !== 0) {
-            this.x += this.hspeed * this.speed / 1.414;
-            this.y += this.vspeed * this.speed / 1.414;
-        } else {
+        var obstacles = this.handler._getObstacles();
+
+        if (!this.collideArray(obstacles)) {
             this.x += this.hspeed * this.speed;
             this.y += this.vspeed * this.speed;
         }
+
     };
 
     this._render = function(ctx) {

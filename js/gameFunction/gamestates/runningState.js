@@ -18,6 +18,10 @@ function RunningState(handler) {
     this._render = function (ctx) {
         var bullets = this.handler._getBullets();
         var enemies = this.handler._getEnemies();
+        var obstacles = this.handler._getObstacles();
+        for (var i = 0; i < obstacles.length; ++i) {
+            obstacles[i]._render(ctx);
+        }
         for (var i = 0; i < enemies.length; ++i) {
             enemies[i]._render(ctx);
         }
