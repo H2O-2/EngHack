@@ -1,0 +1,23 @@
+{
+  "name": "EngHack",
+  "homepage": "https://github.com/H2O-2/EngHack",
+  "authors": [
+    "H2O2, Haowei, Shanglin, Tim"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "normalize.css#^5.0.0",
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "font-awsome#^4.7.0"
+  }
+}
