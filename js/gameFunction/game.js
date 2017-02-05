@@ -7,7 +7,7 @@ function Game() {
     this.keyManager = keyManager;
 
     this.bullets = [];
-    
+
     this._init = function () {
         this.asset = new Asset();
         this.asset._init();
