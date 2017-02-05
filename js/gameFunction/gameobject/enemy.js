@@ -6,8 +6,8 @@ var Enemy = function () {
     this._tick = function() {
         var playerX = this.handler._getPlayer().x,
             playerY = this.handler._getPlayer().y;
-        this.hspeed = this.x - playerX >= 5?-1:1;
-        this.vspeed = this.y - playerY >= 5?-1:1;
+        this.hspeed = this.x - playerX >= 5?-1:(this.x - playerX <= -5?1:0);
+        this.vspeed = this.y - playerY >= 5?-1:(this.y - playerY <= -5?1:0);
 
         if (this.hspeed !== 0) {
 
