@@ -36,7 +36,7 @@ function KeyManager() {
         this.leftKey = this.keys[KEYEVENT.VK_LEFT];
         this.rightKey = this.keys[KEYEVENT.VK_RIGHT];
         this.shitfKey = this.keys[KEYEVENT.SHIFT];
-        this.shootKey = this.keys[KEYEVENT.SHOOT];
+        this.shootKey = this.keys[KEYEVENT.SPACE];
     };
 
 };

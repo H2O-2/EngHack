@@ -29,7 +29,7 @@ var Game = function() {
     this._generateEnemy = function (level) {
         // set level later
         this.enemies = [];
-        for (var i = 0; i < 5; ++i) {
+        for (var i = 0; i < (level || 5); ++i) {
             var xpos = Math.random() * WIDTH;
             var ENEMY = new gameObject(xpos, -50, new Rectangle(0, 0, 30, 30), 3, this.handler);
             Enemy.prototype = ENEMY;
