@@ -7,6 +7,8 @@ var Player = function() {
     this.team = TEAM.ONE;
     this.shootingAlarm = new Alarm();
 
+    this.isSolid = false;
+
     this.state = PLAYERSTATE.IDLING;
 
     this.walk_animation = [
@@ -43,6 +45,8 @@ var Player = function() {
 
         var obstacles = this.handler._getObstacles();
 
+        var enemies = this.handler._getEnemies();
+
         if (!this.collideArray(obstacles)) {
             this.x += scale * this.hspeed * this.speed;
             this.y += scale * this.vspeed * this.speed;
@@ -51,7 +55,7 @@ var Player = function() {
         this.createBullet = this.handler._getKeyManager().shootKey;
         var shootingAlarmResult = this.shootingAlarm._tick();
         if ((shootingAlarmResult === true || shootingAlarmResult === null ) && this.createBullet === 1) {
-            var BULLET = new gameObject(this.x, this.y, null, 8, this.handler);
+            var BULLET = new gameObject(this.x, this.y, new Rectangle(0, 0, 10, 10), 8, this.handler);
             Bullet.prototype = BULLET;
             var bullet = new Bullet(this.face, TEAM.ONE);
             bullet._init();
