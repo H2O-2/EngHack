@@ -1,15 +1,14 @@
 function changeColor() {
     //console.log("Change Color: " + $("span#tagList").text());
-
     var tags = [];
-    var elementList = [];
-    var elements = [];
-
     var tagString = $("span#tagList").text();
     var tagNameString = "";
-    var $html = $("html");
+    var html = $("html");
 
-    $("<canvas id='gameCanvas'></canvas>").prependTo("body").css({height: $html.height(), width: $html.width(), position: "absolute", top: 0, zIndex: 9999, background: "transparent"});
+    if ($("canvas#gameCanvas").length <= 0) {
+        $("<canvas id='gameCanvas'></canvas>").prependTo("body").css({height: html.height(), width: html.width(),
+            position: "absolute", top: 0, zIndex: 9999, background: "transparent"});
+    }
 
     for (var i = 0; i < tagString.length; i++) {
         var curChar = tagString[i];
@@ -42,15 +41,15 @@ function changeColor() {
         return;
     }
 
-    console.log(elementList, elements);
-
     for (var list = 0; list < elementList.length; list++) {
         for (var e = 0; e < elementList[list].length; e++) {
             var curElement = $(elementList[list][e]),
-                curChildren = curElement.children();
+                curChildren = curElement.find('*');
             oriColor.push(curElement.css("background"));
-            curElement.css({background: "red", color: "transparent"});
+            curElement.css({background: 'red', color: "transparent"});
             curChildren.css({color: "transparent"});
+
+            obstacle.push(curElement);
         }
     }
 }
