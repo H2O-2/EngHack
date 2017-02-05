@@ -1,7 +1,7 @@
+var elementList = [];
+var elements = [];
 var oriColor = [];
-
-var testArr = [1, 2, 3];
-
+var obstacle = [];
 console.log("global");
 
 $(document).ready(function () {
