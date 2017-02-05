@@ -7,8 +7,6 @@ var Player = function() {
     this.team = TEAM.ONE;
     this.shootingAlarm = new Alarm();
 
-    this.isSolid = false;
-
     this.state = PLAYERSTATE.IDLING;
 
     this.walk_animation = [
@@ -18,6 +16,15 @@ var Player = function() {
         new Animation(7, this.handler._getAsset().spr_player_walk[3]),
     ];
 
+    this.sprint_animation = [
+        new Animation(7, this.handler._getAsset().spr_player_sprint[0]),
+        new Animation(7, this.handler._getAsset().spr_player_sprint[1]),
+        new Animation(7, this.handler._getAsset().spr_player_sprint[2]),
+        new Animation(7, this.handler._getAsset().spr_player_sprint[3]),
+    ];
+
+    this.currentAnimation = null;
+
     this._tick = function() {
         this.hspeed = this.handler._getKeyManager().rightKey - this.handler._getKeyManager().leftKey;
         this.vspeed = this.handler._getKeyManager().downKey - this.handler._getKeyManager().upKey;
@@ -25,17 +32,21 @@ var Player = function() {
         if (this.hspeed !== 0) {
             this.face = this.hspeed / 2 + 0.5;
             this.state = PLAYERSTATE.MOVING;
+            this.currentAnimation = this.walk_animation[this.face];
         } else if (this.vspeed !== 0) {
             this.face = this.vspeed / 2 + 2.5;
             this.state = PLAYERSTATE.MOVING;
+            this.currentAnimation = this.walk_animation[this.face];
         } else {
             this.state = PLAYERSTATE.IDLING;
+            this.currentAnimation = null;
         }
 
         var scale = 1;
         if (this.handler._getKeyManager().shitfKey === 1) {
             scale = 1.6;
             this.state = PLAYERSTATE.SPRINTING;
+            this.currentAnimation = this.sprint_animation[this.face];
         }
 
         if (this.hspeed !== 0 && this.vspeed !== 0) {
@@ -63,7 +74,8 @@ var Player = function() {
             this.shootingAlarm._init(10);
         }
 
-        this.walk_animation[this.face]._tick();
+        if (this.currentAnimation !== null) this.currentAnimation._tick();
+
     };
 
     this._render = function(ctx) {
@@ -73,7 +85,7 @@ var Player = function() {
         if (this.vspeed === 0 && this.hspeed === 0) {
             this.walk_animation[this.face]._getFrameAt(0).draw(ctx, this.x, this.y);
         } else {
-            this.walk_animation[this.face]._getFrame().draw(ctx, this.x, this.y);
+            this.currentAnimation._getFrame().draw(ctx, this.x, this.y);
         }
     };
 };
