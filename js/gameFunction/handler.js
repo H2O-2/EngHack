@@ -12,5 +12,8 @@ function Handler(game) {
     this._getBullets = function () {
         return this.game.bullets;
     }
-    // asset
+
+    this._getAsset = function () {
+        return this.game.asset;
+    }
 }

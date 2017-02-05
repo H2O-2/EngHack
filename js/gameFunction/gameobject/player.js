@@ -23,7 +23,7 @@ Player = function() {
             this.y += this.vspeed * this.speed;
         }
 
-        this.createBullet = this.handler._getKeyManager().spaceKey;
+        this.createBullet = this.handler._getKeyManager().shootKey;
         var shootingAlarmResult = this.shootingAlarm._tick();
         if ((shootingAlarmResult === true || shootingAlarmResult === null ) && this.createBullet === 1) {
             var BULLET = new gameObject(this.x, this.y, null, 8, this.handler);
@@ -37,7 +37,8 @@ Player = function() {
     };
 
     this._render = function(ctx) {
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(this.x, this.y, 50, 50);
+        //ctx.fillStyle = '#ffffff';
+        //ctx.fillRect(this.x, this.y, 50, 50);
+        this.handler._getAsset().spr_player.draw(ctx, this.x, this.y);
     };
 };
