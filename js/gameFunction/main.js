@@ -44,5 +44,8 @@ function main() {
     window.requestAnimationFrame(loop, canvas);
 }
 
-
-main();
+var img = new Image();
+img.onload = function() {
+    main();
+};
+img.src = "js/assets/naruto_walk.png";
