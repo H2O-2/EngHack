@@ -5,10 +5,11 @@ $(document).ready(function () {
 });
 
 function hello() {
-    console.log("RAN");
-
+    var tagString = $("input#tagName:text").val();
+    console.log(tagString);
+    $("span#tagList").text(tagString);
+/*
     var tagString = $("#tagName:text").val();
-    console.log($.type(tagString));
     var tagNameString = "";
     for (var i = 0; i < tagString.length; i++) {
         var curChar = tagString[i];
@@ -16,7 +17,8 @@ function hello() {
         if ((curChar >= 'a' && curChar <= 'z') || (curChar >= 'A' && curChar <= 'Z') || (curChar > '0' && curChar <= '9')) {
             tagNameString += curChar;
         } else if (tagNameString.length > 0) {
-            tagList.push(tagNameString);
+            //tagList.push(tagNameString);
+            tagList[0] = tagNameString;
             tagNameString = "";
         } else {
             tagNameString = "";
@@ -24,12 +26,17 @@ function hello() {
     }
 
     tagList.push(tagNameString);
-    console.log(testArr);
-
+    console.log(tagList);
+*/
 
     if (!changed) {
         chrome.tabs.executeScript({
-            file: 'js/changeColor.js'
+            //code: "document.getElementById('tagList').innerHtml = " + "\"" + tagString + "\"" + ";"
+            code: '$("span#tagList").text(' + '\'' + tagString + '\'' + ')'
+        }, function () {
+            chrome.tabs.executeScript({
+                file: 'js/changeColor.js'
+            })
         });
         changed = true;
     } else {
