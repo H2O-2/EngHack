@@ -1,6 +1,4 @@
 function changeColor() {
-    //var elementList = document.getElementsByTagName("table");
-
     //console.log("Change Color: " + $("span#tagList").text());
 
     var tags = [];
@@ -9,6 +7,9 @@ function changeColor() {
 
     var tagString = $("span#tagList").text();
     var tagNameString = "";
+    var $html = $("html");
+
+    $("<canvas id='gameCanvas'></canvas>").prependTo("body").css({height: $html.height(), width: $html.width(), position: "absolute", top: 0, zIndex: 9999, background: "transparent"});
 
     for (var i = 0; i < tagString.length; i++) {
         var curChar = tagString[i];
@@ -44,19 +45,17 @@ function changeColor() {
     console.log(elementList, elements);
 
     for (var list = 0; list < elementList.length; list++) {
-        for (var e = 0; e < elements.length; e++) {
-            oriColor.push(elements[e].style.background);
-            elements[e].style.background = "red";
+        for (var e = 0; e < elementList[list].length; e++) {
+            var curElement = $(elementList[list][e]),
+                curChildren = curElement.children();
+            oriColor.push(curElement.css("background"));
+            curElement.css({background: "red", color: "transparent"});
+            curChildren.css({color: "transparent"});
         }
     }
-
-    //oriColor = elementList[0].style.background;
-    //elementList[0].style.background = "red";
 }
 
 
-console.log("change: ");
-console.log(tagList);
 $(document).ready(function () {
     changeColor();
 });

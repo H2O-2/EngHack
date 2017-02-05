@@ -6,8 +6,5 @@ console.log("global");
 
 $(document).ready(function () {
     $("<span id='tagList'></span>").appendTo("body").css({display: "none"});
-    $("<span id='tagList'></span>").change(function () {
-        console.log("changed");
-    })
 });
 

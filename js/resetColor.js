@@ -1,5 +1,7 @@
 function resetColor() {
     console.log("reset");
+
+
     /*
     var list = document.getElementsByTagName("table");
 
